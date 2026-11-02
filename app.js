@@ -83,7 +83,7 @@
       const exactRecord = /^\d{1,3}$/.test(query);
       const words = query.split(/\s+/).filter(Boolean);
       matches = rows.filter(row => (year.value === 'all' || row.dataset.pubYear === year.value) &&
-        (exactRecord ? Number(row.dataset.pubNumber) === Number(query) : words.every(word => text.get(row).includes(word))));
+        (exactRecord ? [row.dataset.pubNumber, ...(row.dataset.pubAliases || '').split(',')].some(id => id && Number(id) === Number(query)) : words.every(word => text.get(row).includes(word))));
       currentPage = 1;
       showPage();
     }
