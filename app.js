@@ -74,7 +74,6 @@
         if (selection) {
           const count = $$('.publication-row', selection).filter(row => matching.has(row)).length;
           selection.hidden = count === 0;
-          $('[data-selected-count]', selection).textContent = `${count} ${query ? (count === 1 ? 'match' : 'matches') : (count === 1 ? 'paper' : 'papers')}`;
         }
         const archive = $('[data-all-papers]', group);
         if (archive) {
@@ -85,10 +84,9 @@
         }
       });
       $('#pub-empty').hidden = matches.length !== 0;
-      const selectedCount = matches.filter(row => row.dataset.pubSelected === 'true').length;
       $('#pub-count').textContent = query
         ? `${matches.length} matching ${matches.length === 1 ? 'record' : 'records'}`
-        : `${matches.length} ${matches.length === 1 ? 'record' : 'records'}${selectedCount ? ` · ${selectedCount} selected papers${year.value === 'all' ? ' from 2024–2026' : ''}` : ''}`;
+        : `${matches.length} ${matches.length === 1 ? 'record' : 'records'}`;
     }
     input.addEventListener('input', filter);
     year.addEventListener('change', filter);
