@@ -50,3 +50,7 @@ A research news item announces acceptance in Light: Science & Applications and a
 The LSA paper is the first archive entry (Record 001); former Records 001–010 are now 002–011. Internal links and site search follow the new numbers. The news story is adapted from the research lead’s English manuscript without journal submission formatting or placeholders.
 
 Two original scientific figures extracted from the supplied Word news manuscript illustrate the measurement scheme and force-sensitivity comparison. Both preserve their original pixels and aspect ratios and offer full-size image links.
+
+## English diagram labels — 3 November 2026
+
+All Chinese labels found in the six displayed schematics on the quantum-sensing and imaging research page have English replacements (29 label groups). The six `*-en.png` files use deterministic text-region edits of the original images; no generative redraw is used. Pixels outside the declared text-edit regions are unchanged, and scientific curves, numerical values, points and error bars are retained. Each localized figure links to its original-size English image. Landscape, laboratory and personnel photographs are unchanged. Original source images are retained for provenance.
