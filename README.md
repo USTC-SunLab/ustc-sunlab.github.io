@@ -54,3 +54,32 @@ Two original scientific figures extracted from the supplied Word news manuscript
 ## English diagram labels — 3 November 2026
 
 All Chinese labels found in the six displayed schematics on the quantum-sensing and imaging research page have English replacements (29 label groups). The six `*-en.png` files use deterministic text-region edits of the original images; no generative redraw is used. Pixels outside the declared text-edit regions are unchanged, and scientific curves, numerical values, points and error bars are retained. Each localized figure links to its original-size English image. Landscape, laboratory and personnel photographs are unchanged. Original source images are retained for provenance.
+
+## Selected papers by year — 3 November 2026
+
+The publication archive now presents selected papers first for 2026 (9), 2025 (6) and 2024 (6). Remaining records appear in each year’s expandable **All papers** section. Earlier years retain every record in their annual archive. All 202 records, original record numbers, legacy aliases, citations, publication statuses and publisher/preprint links are preserved. Searching opens matching archive sections automatically.
+
+Selection is an editorial judgment based on the journal’s standing in its relevant discipline, informed by publisher scope, editorial standards and available field-specific metrics. It is not a ranking of individual papers, a citation-count assessment or a single impact-factor cutoff. Selected groups retain the existing bibliography order.
+
+| Year | Selected records | Journals |
+| --- | --- | --- |
+| 2026 | 001, 006, 007, 008, 011, 012, 013, 015, 016 | Light: Science & Applications, Nature, Laser & Photonics Reviews, Advanced Functional Materials, International Journal of Extreme Manufacturing |
+| 2025 | 020, 023, 027, 029, 034, 036 | npj Quantum Information, Physical Review Letters, Nature Communications, Laser & Photonics Reviews, APL Photonics, Advanced Functional Materials |
+| 2024 | 038, 041, 042, 045, 047, 050 | npj Quantum Information, ACS Nano, Nature Communications, Photonics Research, Physical Review Letters, Nano Letters |
+
+The author-confirmed Light: Science & Applications paper retains its **Accepted** label and preprint link. Unaccepted preprints are not selected. To avoid featuring the same work twice, the AFM magnon-sensor paper appears in the 2025 selection (Record 036), and the IJEM glass-cutting paper in 2026 (Record 015), using their volume/issue years. Their earlier online entries remain in All papers under 2024 and 2025 respectively.
+
+Publisher references used for the selection:
+
+- [Nature](https://www.nature.com/nature/about)
+- [Light: Science & Applications](https://www.nature.com/lsa/aims)
+- [Advanced Functional Materials](https://onlinelibrary.wiley.com/page/journal/16163028/homepage/productinformation.html)
+- [Laser & Photonics Reviews](https://onlinelibrary.wiley.com/journal/18638899)
+- [International Journal of Extreme Manufacturing](https://ioppublishing.org/wp-content/uploads/2024/11/IOP-Publishing-Product-Changes-2025.pdf)
+- [Physical Review Letters](https://journals.aps.org/prl/about)
+- [Nature Communications](https://www.nature.com/ncomms/aims)
+- [npj Quantum Information](https://www.nature.com/npjqi/journal-information)
+- [APL Photonics](https://pubs.aip.org/aip/app/pages/about)
+- [ACS Nano](https://pubs.acs.org/doi/10.1021/acsnano.2c00077)
+- [Nano Letters](https://axial.acs.org/nanoscience/advancing-nanoscience-through-the-acs-nanoscience-portfolio)
+- [Photonics Research](https://opg.optica.org/content/author/portal/item/style-metrics/)

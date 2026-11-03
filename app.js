@@ -54,45 +54,55 @@
     const rows = $$('.publication-row');
     const input = $('#pub-query');
     const year = $('#pub-year');
-    const perPage = 20;
-    let currentPage = 1;
-    let matches = rows;
+    const groups = $$('[data-pub-section]');
     input.value = params.get('q') || '';
     if (Array.from(year.options).some(o => o.value === params.get('year'))) year.value = params.get('year');
     const text = new Map(rows.map(row => [row, $('.citation', row).textContent.toLowerCase()]));
-    function showPage(scroll = false) {
-      const pages = Math.max(1, Math.ceil(matches.length / perPage));
-      currentPage = Math.min(currentPage, pages);
-      rows.forEach(r => { r.hidden = true; });
-      matches.slice((currentPage - 1) * perPage, currentPage * perPage).forEach(r => { r.hidden = false; });
-      $('#pub-empty').hidden = matches.length !== 0;
-      $('#pub-pagination').hidden = matches.length <= perPage;
-      $('#pub-prev').disabled = currentPage === 1;
-      $('#pub-next').disabled = currentPage >= pages;
-      $('#pub-page').textContent = `Page ${currentPage} of ${pages}`;
-      const start = matches.length ? (currentPage - 1) * perPage + 1 : 0;
-      const end = Math.min(currentPage * perPage, matches.length);
-      $('#pub-count').textContent = matches.length ? `Showing ${start}–${end} of ${matches.length} records` : '0 records';
-      if (scroll) {
-        input.focus({ preventScroll: true });
-        pubForm.scrollIntoView({ block: 'start', behavior: 'instant' });
-      }
-    }
     function filter() {
       const query = input.value.trim().toLowerCase();
       const exactRecord = /^\d{1,3}$/.test(query);
       const words = query.split(/\s+/).filter(Boolean);
-      matches = rows.filter(row => (year.value === 'all' || row.dataset.pubYear === year.value) &&
+      const matches = rows.filter(row => (year.value === 'all' || row.dataset.pubYear === year.value) &&
         (exactRecord ? [row.dataset.pubNumber, ...(row.dataset.pubAliases || '').split(',')].some(id => id && Number(id) === Number(query)) : words.every(word => text.get(row).includes(word))));
-      currentPage = 1;
-      showPage();
+      const matching = new Set(matches);
+      rows.forEach(row => { row.hidden = !matching.has(row); });
+      groups.forEach(group => {
+        const visible = $$('.publication-row', group).filter(row => matching.has(row));
+        group.hidden = visible.length === 0;
+        $('[data-year-count]', group).textContent = `${visible.length} ${query ? 'matching ' : ''}${visible.length === 1 ? 'record' : 'records'}`;
+        const selection = $('[data-selected-papers]', group);
+        if (selection) {
+          const count = $$('.publication-row', selection).filter(row => matching.has(row)).length;
+          selection.hidden = count === 0;
+          $('[data-selected-count]', selection).textContent = `${count} ${query ? (count === 1 ? 'match' : 'matches') : (count === 1 ? 'paper' : 'papers')}`;
+        }
+        const archive = $('[data-all-papers]', group);
+        if (archive) {
+          const count = $$('.publication-row', archive).filter(row => matching.has(row)).length;
+          archive.hidden = count === 0;
+          $('[data-remaining-count]', archive).textContent = `${count} ${query ? (count === 1 ? 'match' : 'matches') : selection ? 'more' : (count === 1 ? 'record' : 'records')}`;
+          archive.open = Boolean(query) || (year.value !== 'all' && !selection);
+        }
+      });
+      $('#pub-empty').hidden = matches.length !== 0;
+      const selectedCount = matches.filter(row => row.dataset.pubSelected === 'true').length;
+      $('#pub-count').textContent = query
+        ? `${matches.length} matching ${matches.length === 1 ? 'record' : 'records'}`
+        : `${matches.length} ${matches.length === 1 ? 'record' : 'records'}${selectedCount ? ` · ${selectedCount} selected papers${year.value === 'all' ? ' from 2024–2026' : ''}` : ''}`;
     }
     input.addEventListener('input', filter);
     year.addEventListener('change', filter);
     pubForm.addEventListener('submit', e => { e.preventDefault(); filter(); });
-    pubForm.addEventListener('reset', () => { input.value = ''; year.value = 'all'; filter(); });
-    $('#pub-prev').addEventListener('click', () => { currentPage--; showPage(true); });
-    $('#pub-next').addEventListener('click', () => { currentPage++; showPage(true); });
+    pubForm.addEventListener('reset', e => { e.preventDefault(); input.value = ''; year.value = 'all'; filter(); });
+    // Expand archive records for printing, then restore the reader's choices.
+    let printState = [];
+    window.addEventListener('beforeprint', () => {
+      printState = $$('[data-all-papers]').map(details => [details, details.open]);
+      printState.forEach(([details]) => { details.open = true; });
+    });
+    window.addEventListener('afterprint', () => {
+      printState.forEach(([details, open]) => { details.open = open; });
+    });
     filter();
   }
 

@@ -82,3 +82,52 @@ nav.research-contents span{font-size:10px;color:var(--blue);flex-shrink:0;margin
 
 .article-figure.news-science-figure{background:#fff;padding:0;margin:32px 0}
 .article-figure.news-science-figure img{height:auto;width:100%}
+
+/* Annual publication selections and complete, searchable archives. */
+.publication-year{display:grid;grid-template-columns:112px minmax(0,1fr);gap:32px;padding:38px 0 46px;border-top:1px solid var(--line);scroll-margin-top:120px}
+.publication-year-heading h2{font-size:42px;letter-spacing:-.035em;color:var(--blue);line-height:1.1}
+.publication-year-heading p{font-size:12px;color:var(--muted);margin-top:10px}
+.publication-year-content{min-width:0}
+.publication-subheading{display:flex;align-items:baseline;justify-content:space-between;gap:16px;font-size:18px;font-weight:600;color:var(--blue);padding-bottom:16px}
+.publication-subheading span{font-family:var(--sans);font-size:12px;color:var(--muted);font-weight:400;white-space:nowrap}
+.publication-year .publication-row{display:block;padding:22px 0}
+.publication-year .pub-year{display:none}
+.publication-year .citation{font-size:15px;line-height:1.85}
+.publication-year .record-number{font-size:10px}
+.publication-year .text-link{font-size:12px}
+.publication-journal{font-weight:650;color:var(--blue-dark)}
+.all-papers{border:1px solid var(--line);background:var(--soft);margin-top:18px}
+.publication-year-content>.all-papers:first-child{margin-top:0}
+.all-papers>summary{display:flex;align-items:center;gap:16px;cursor:pointer;list-style:none;padding:18px 22px;font-size:15px;font-weight:600;color:var(--blue);min-height:64px}
+.all-papers>summary::-webkit-details-marker{display:none}
+.all-papers>summary:hover{background:#eaf1f7}
+.all-papers>summary:focus-visible{outline:3px solid #239ccc;outline-offset:4px}
+.all-papers-count{font-size:12px;font-weight:400;color:var(--muted);margin-left:auto}
+.all-papers-icon{position:relative;width:14px;height:14px;flex-shrink:0}
+.all-papers-icon::before,.all-papers-icon::after{content:'';position:absolute;background:currentColor;left:0;top:6px;width:14px;height:1.5px}
+.all-papers-icon::after{transform:rotate(90deg)}
+.all-papers[open] .all-papers-icon::after{transform:rotate(0)}
+.all-papers-content{padding:0 22px 10px;background:white;border-top:1px solid var(--line)}
+.all-papers-description{font-size:12px;color:var(--muted);padding:18px 0}
+.publication-year .publication-row:last-child{padding-bottom:24px}
+@media(max-width:640px){
+ .publication-year{grid-template-columns:1fr;gap:20px;padding:28px 0 34px;scroll-margin-top:92px}
+ .publication-year-heading{display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+ .publication-year-heading h2{font-size:36px}
+ .publication-year-heading p{margin-top:0;font-size:12px}
+ .publication-subheading{font-size:17px}
+ .publication-year .citation{font-size:14px;line-height:1.85}
+ .publication-year .publication-row{padding:19px 0}
+ .all-papers>summary{padding:16px;gap:12px}
+ .all-papers-content{padding:0 16px 6px}
+ .archive-toolbar{font-size:11px;align-items:flex-start;flex-wrap:wrap;gap:8px}
+ .archive-toolbar .results-count{font-size:12px}
+}
+@media print{
+ .publication-year{display:block;break-inside:auto}
+ .publication-year-heading{margin-bottom:18px}
+ .all-papers{border:0;background:white}
+ .all-papers-content{padding:0;border:0}
+ .all-papers-icon{display:none}
+ .publication-year .publication-row[hidden]{display:none!important}
+}
